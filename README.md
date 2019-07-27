@@ -1,2 +1,2 @@
-# turbotec_ipm
-tubotec data analysis
+# turbotech_ipm
+tubotech data analysis
