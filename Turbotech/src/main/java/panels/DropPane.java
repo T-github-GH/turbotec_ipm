@@ -25,10 +25,11 @@ public class DropPane extends JPanel {
         target = new File("target.png");
 
         setLayout(new GridBagLayout());
-        message = new JLabel();
-        message.setFont(message.getFont().deriveFont(Font.BOLD, 24));
+        message = new JLabel("Drag your file here");
+        message.setFont(message.getFont().deriveFont(Font.BOLD, 54));
         add(message);
-        setBackground(Color.BLUE);
+
+        setBackground(new Color(171, 195, 203));
     }
 
     @Override
@@ -71,6 +72,7 @@ public class DropPane extends JPanel {
             @Override
             public void run() {
                 message.setText("You dropped " + files.size() + " files");
+                Receivepanel.setAddressTextFile(files.get(0).toString());
             }
         };
         SwingUtilities.invokeLater(run);

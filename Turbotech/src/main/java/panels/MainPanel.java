@@ -10,7 +10,7 @@ public class MainPanel extends JFrame {
     private static JFileChooser fileChooser ;
     private static BorderLayout borderLayout ;
     private static BoxLayout boxLayout ;
-    private static DropPane dropPane ;
+    private static Receivepanel receivepanel ;
     static JPanel cardPanel ;
     static CardLayout cardLayout ;
 
@@ -25,7 +25,7 @@ public class MainPanel extends JFrame {
 
         borderLayout = new BorderLayout(10,10);
 
-        dropPane = new DropPane();
+        receivepanel = new Receivepanel();
 
         cardPanel = new JPanel();
         JPanel p2 = new JPanel();
@@ -37,7 +37,7 @@ public class MainPanel extends JFrame {
         JPanel p5 = new JPanel();
         p5.setBackground(Color.GREEN);
         cardLayout = new CardLayout();
-        cardPanel.add(dropPane);
+        cardPanel.add(receivepanel);
         cardPanel.add(p2);
         cardPanel.add(p3);
         cardPanel.add(p4);
