@@ -1,5 +1,7 @@
 package panels;
 
+import com.jtattoo.plaf.JTattooUtilities;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,7 +20,7 @@ public class MainPanel extends JFrame {
         setVisible(true);
     }
 
-    private static void preProcess(JFrame frame){
+    private void preProcess(JFrame frame){
         dimension = new Dimension(2200, 1500);
 
         borderLayout = new BorderLayout(10,10);
@@ -42,6 +44,7 @@ public class MainPanel extends JFrame {
         cardPanel.add(p5);
         cardPanel.setLayout(cardLayout);
 
+        Mbutton b = new Mbutton("first", 1);
         Mbutton b1 = new Mbutton("first", 1);
         Mbutton b2 = new Mbutton("second", 2);
         Mbutton b3 = new Mbutton("third",3);
@@ -49,10 +52,15 @@ public class MainPanel extends JFrame {
         Mbutton b5 = new Mbutton("fifth", 5);
 
         JPanel menu = new JPanel();
+        addGap(menu);
         menu.add(b1);
+        addGap(menu);
         menu.add(b2);
+        addGap(menu);
         menu.add(b3);
+        addGap(menu);
         menu.add(b4);
+        addGap(menu);
         menu.add(b5);
         boxLayout = new BoxLayout(menu, BoxLayout.Y_AXIS);
         menu.setLayout(boxLayout);
@@ -63,5 +71,9 @@ public class MainPanel extends JFrame {
         frame.setSize(dimension);
         frame.setLocation(700,400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void addGap(JPanel menu) {
+        menu.add(Box.createRigidArea(new Dimension(50, 10)));
     }
 }

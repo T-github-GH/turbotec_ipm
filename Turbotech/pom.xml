@@ -4,6 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+
+
     <groupId>Turbotec</groupId>
     <artifactId>Turbotec</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -20,4 +22,14 @@
         </plugins>
     </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.jtattoo</groupId>
+            <artifactId>JTattoo</artifactId>
+            <version>1.6.7</version>
+        </dependency>
+    </dependencies>
+
+
 </project>
+
