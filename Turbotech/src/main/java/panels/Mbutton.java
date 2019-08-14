@@ -36,7 +36,7 @@ public class Mbutton extends JButton {
 //        setBackground(defult);
 
         try {
-            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+            UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
@@ -54,6 +54,12 @@ public class Mbutton extends JButton {
                 MainPanel.cardLayout.first(MainPanel.cardPanel);
                 for (int i=1; i<number; i++)
                     MainPanel.cardLayout.next(MainPanel.cardPanel);
+                if (number == 2) {
+                    OnlinePanel.setOpen(true);
+                    MainPanel.onlinePanel.update();
+                } else {
+                    OnlinePanel.setOpen(false);
+                }
 
             }
         });

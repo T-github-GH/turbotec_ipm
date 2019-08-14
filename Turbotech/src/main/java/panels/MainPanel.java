@@ -13,6 +13,7 @@ public class MainPanel extends JFrame {
     private static Receivepanel receivepanel ;
     static JPanel cardPanel ;
     static CardLayout cardLayout ;
+    static OnlinePanel onlinePanel ;
 
     public MainPanel () {
         preProcess(this);
@@ -28,8 +29,8 @@ public class MainPanel extends JFrame {
         receivepanel = new Receivepanel();
 
         cardPanel = new JPanel();
-        JPanel p2 = new JPanel();
-        p2.setBackground(Color.GRAY);
+        onlinePanel = new OnlinePanel();
+        onlinePanel.setBackground(new Color(221, 145, 142));
         JPanel p3 = new JPanel();
         p3.setBackground(Color.YELLOW);
         JPanel p4 = new JPanel();
@@ -38,7 +39,7 @@ public class MainPanel extends JFrame {
         p5.setBackground(Color.GREEN);
         cardLayout = new CardLayout();
         cardPanel.add(receivepanel);
-        cardPanel.add(p2);
+        cardPanel.add(onlinePanel);
         cardPanel.add(p3);
         cardPanel.add(p4);
         cardPanel.add(p5);
