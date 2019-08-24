@@ -1,5 +1,8 @@
 package panels;
 
+import org.python.apache.commons.compress.archivers.cpio.CpioArchiveEntry;
+import res.MyColor;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,28 +10,35 @@ public class ColumnsPanel extends JPanel {
     ColumnR resultPanel;
     JPanel txtPanel;
 
-    public ColumnsPanel(int rects, Color color, String title) {
-        resultPanel = new ColumnR(rects, color);
+    private Dimension size = new Dimension(50,150);
+    public ColumnsPanel( Color color, String title) {
+        setBackground(MyColor.onlineColumnBack);
+        resultPanel = new ColumnR(color);
         txtPanel = new JPanel();
         JLabel label = new JLabel(title);
-        //txtPanel.add(label);
-        txtPanel.setSize(20,200);
-        txtPanel.setMinimumSize(new Dimension(20,100));
-        txtPanel.setMaximumSize(new Dimension(20,100));
-        label.setFont(new Font(Font.SERIF, Font.ITALIC, 24));
+        txtPanel.add(label);
+        txtPanel.setSize(size);
+        txtPanel.setMinimumSize(size);
+        txtPanel.setMaximumSize(size);
+        txtPanel.setBackground(MyColor.onlineColumnBack);
+        label.setFont(new Font(Font.SERIF, Font.ITALIC, 22));
+        label.setBackground(Color.RED);
         BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
         setLayout(layout);
+
+        add(gap(10, MyColor.onlineColumnBack));
         add(resultPanel);
         add(txtPanel);
 
 
+
     }
 
-    public void setRects(int rects) {
+    public void setRects(double rects) {
         resultPanel.setRects(rects);
     }
 
-    public void setR(int r) {
+    public void setR(double r) {
         resultPanel.setR(r);
     }
 
@@ -39,5 +49,12 @@ public class ColumnsPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+    }
+
+    private JPanel gap(int size, Color color) {
+        JPanel p = new JPanel();
+        p.setBackground(color);
+        p.setMaximumSize(new Dimension(size, size));
+        return p;
     }
 }

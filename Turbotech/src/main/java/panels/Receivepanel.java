@@ -1,5 +1,8 @@
 package panels;
 
+import res.MyFont;
+import res.MySize;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
@@ -14,9 +17,6 @@ public class Receivepanel extends JPanel {
     private static JLabel addressTextFile;
     private static JTextField txtFile;
     private static JTextField txtDir;
-    private Font textFieldFont = new Font(Font.SERIF, Font.PLAIN, 30);
-    private Font textLabelFont = new Font(Font.SERIF, Font.BOLD, 40);
-    private Font btnFont = new Font(Font.SERIF, Font.BOLD, 34);
 
     private File selectedFile;
     public Receivepanel() {
@@ -26,7 +26,7 @@ public class Receivepanel extends JPanel {
         title.setFont( new Font(Font.SERIF, Font.BOLD, 80) );
         ptitle.setLayout(new BorderLayout());
         ptitle.add(title, BorderLayout.WEST);
-        ptitle.setMaximumSize(new Dimension(10000, 100));
+        ptitle.setMaximumSize(MySize.receivePanelTitleSize);
 
         JPanel p = new JPanel();
         JPanel p1 = new JPanel();
@@ -35,25 +35,24 @@ public class Receivepanel extends JPanel {
         DropPane dropPane = new DropPane();
 
         JLabel addressTextDir = new JLabel("Directory Address: ");
-        addressTextDir.setFont( textLabelFont );
+        addressTextDir.setFont( MyFont.receivePanelTextLabelFont );
         JButton btnDir = new JButton("Select");
         txtDir = new JTextField();
-        txtDir.setFont(textFieldFont);
+        txtDir.setFont(MyFont.receivePanelTextFieldFont);
 
         addressTextFile = new JLabel("File Address: ");
-        addressTextFile.setFont( textLabelFont );
+        addressTextFile.setFont( MyFont.receivePanelTextLabelFont );
         JButton btnFile = new JButton("Select");
         txtFile = new JTextField();
-        txtFile.setFont(textFieldFont);
+        txtFile.setFont(MyFont.receivePanelTextFieldFont);
 
 
-        Dimension dimension = new Dimension(180,80);
-        btnDir.setMaximumSize(dimension);
-        btnDir.setMinimumSize(dimension);
-        btnDir.setFont( btnFont );
-        btnFile.setMaximumSize(dimension);
-        btnFile.setMinimumSize(dimension);
-        btnFile.setFont( btnFont );
+        btnDir.setMaximumSize(MySize.receivePanelBtnSize);
+        btnDir.setMinimumSize(MySize.receivePanelBtnSize);
+        btnDir.setFont( MyFont.receivePanelBtnFont );
+        btnFile.setMaximumSize(MySize.receivePanelBtnSize);
+        btnFile.setMinimumSize(MySize.receivePanelBtnSize);
+        btnFile.setFont( MyFont.receivePanelBtnFont );
         btnActionListener(btnFile, this.BTN_FILE);
 
         p1.add(addressTextDir);
@@ -79,15 +78,15 @@ public class Receivepanel extends JPanel {
 
         JButton btnStart = new JButton("Start");
         btnStart.setFont(new Font(Font.DIALOG, Font.BOLD, 40));
-        btnStart.setMaximumSize(dimension);
+        btnStart.setMaximumSize(MySize.receivePanelBtnSize);
 
         JPanel footer = new JPanel();
         footer.setLayout(new BorderLayout());
         footer.add(btnStart, BorderLayout.CENTER);
-        footer.add(Box.createRigidArea(dimension), BorderLayout.SOUTH);
-        footer.add(Box.createRigidArea(dimension), BorderLayout.NORTH);
-        footer.setMinimumSize(dimension);
-        footer.setMaximumSize(dimension);
+        footer.add(Box.createRigidArea(MySize.receivePanelBtnSize), BorderLayout.SOUTH);
+        footer.add(Box.createRigidArea(MySize.receivePanelBtnSize), BorderLayout.NORTH);
+        footer.setMinimumSize(MySize.receivePanelBtnSize);
+        footer.setMaximumSize(MySize.receivePanelBtnSize);
 
         add(ptitle);
         add(p);
@@ -96,6 +95,7 @@ public class Receivepanel extends JPanel {
 
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         setLayout(boxLayout);
+
     }
 
     private void btnActionListener (JButton btn,String type){

@@ -16,6 +16,8 @@ import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
 //import com.jtattoo.plaf.mint.MintLookAndFeel
 //import com.jtattoo.plaf.noire.NoireLookAndFeel
 import com.jtattoo.plaf.texture.TextureLookAndFeel;
+import res.MyFont;
+import res.MySize;
 
 public class Mbutton extends JButton {
 //    private Color press = new Color(0, 173, 181);
@@ -24,16 +26,13 @@ public class Mbutton extends JButton {
 
     private final int number ;
 
-    Dimension dimension;
     public Mbutton(String lable, final int number){
         super("  " + lable + "  ");
         this.number = number;
-        dimension = new Dimension(500,100);
 
-        setMaximumSize(dimension);
-        setMinimumSize(dimension);
-        setFont(new Font(Font.SERIF, Font.BOLD, 38));
-//        setBackground(defult);
+        setMaximumSize(MySize.btnSize);
+        setMinimumSize(MySize.btnSize);
+        setFont(MyFont.btnFont);
 
         try {
             UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
@@ -51,15 +50,16 @@ public class Mbutton extends JButton {
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                MainPanel.cardLayout.first(MainPanel.cardPanel);
-                for (int i=1; i<number; i++)
-                    MainPanel.cardLayout.next(MainPanel.cardPanel);
                 if (number == 2) {
                     OnlinePanel.setOpen(true);
-                    MainPanel.onlinePanel.update();
                 } else {
                     OnlinePanel.setOpen(false);
                 }
+
+                MainPanel.cardLayout.first(MainPanel.cardPanel);
+                for (int i=1; i<number; i++)
+                    MainPanel.cardLayout.next(MainPanel.cardPanel);
+
 
             }
         });

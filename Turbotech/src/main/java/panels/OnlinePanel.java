@@ -1,82 +1,113 @@
 package panels;
 
+import BackWork.DataConfig;
+import res.MyColor;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Random;
 
 public class OnlinePanel extends JPanel {
 
     ColumnsPanel[] unsafes ;
     ColumnsPanel safe;
-    private static boolean isOpen = false;
+    DataConfig data;
+    SensorPanel sensorPanel;
 
+    private static boolean isOpen = false;
     public OnlinePanel() {
-        setBackground(new Color(174, 193, 202));
+        setBackground(MyColor.panelBack);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JPanel panel = new JPanel();
-        BoxLayout resultLayout = new BoxLayout(panel, BoxLayout.X_AXIS);
-        panel.setLayout(resultLayout);
-        Dimension panelDimension = new Dimension(1500,30000);
-        panel.setSize(panelDimension);
-
-
-        safe = new ColumnsPanel(1, Color.GREEN, " H");
+        JPanel panelOnline = new JPanel();
+        BoxLayout resultLayout = new BoxLayout(panelOnline, BoxLayout.X_AXIS);
+        panelOnline.setLayout(resultLayout);
+        Dimension panelDimension = new Dimension(1800,2600);
+        panelOnline.setSize(panelDimension);
+        safe = new ColumnsPanel(Color.GREEN, "H ");
+//        safe.setSize(new Dimension(500, 1000));
+        safe.setMinimumSize(new Dimension(800, 1000));
         unsafes = new ColumnsPanel[14];
         makeUnsafes(unsafes);
+        panelOnline.add(gap(30, MyColor.onlineColumnBack));
+        panelOnline.add(safe);
+        addUnsafes(panelOnline, unsafes);
+        panelOnline.add(gap(30, MyColor.onlineColumnBack));
+        panelOnline.setMaximumSize(panelDimension);
+        panelOnline.setBackground(MyColor.onlineColumnBack);
+        panelOnline.setBorder(new LineBorder(MyColor.onlineColumnBorder, 15, false));
 
+        JPanel panelGif = new JPanel();
+        BoxLayout layout = new BoxLayout(panelGif, BoxLayout.X_AXIS);
+        panelGif.setLayout(layout);
+        panelGif.add(new GifPanel());
 
+        JPanel panelData = new JPanel();
+        BoxLayout layout1 = new BoxLayout(panelData, BoxLayout.Y_AXIS);
+        panelData.setLayout(layout1);
+        panelData.add(gap(300, MyColor.panelBack));
+        sensorPanel = new SensorPanel();
+        panelData.add(sensorPanel);
+        panelData.add(gap(300, MyColor.panelBack));
+        panelData.setBackground(MyColor.panelBack);
 
-        panel.add(gap(30));
-        panel.add(safe);
-        addUnsafes(panel, unsafes);
-        panel.add(gap(30));
-
-        panel.setMaximumSize(panelDimension);
-
-
-        add(new JPanel());
-        add(panel);
-        add(new JPanel());
+        add(panelGif);
+        add(panelOnline);
+        add(panelData);
 
 
     }
 
-    private JPanel gap(int size) {
+    private JPanel gap(int size, Color color) {
         JPanel p = new JPanel();
+        p.setBackground(color);
         p.setMaximumSize(new Dimension(size, size));
         return p;
     }
     private void makeUnsafes (ColumnsPanel[] panels) {
-        int arz = 10;
         for (int i = 0; i < panels.length; i++) {
-            panels[i] = new ColumnsPanel(new Random().nextInt(10) + 1 , Color.RED, "P" + (i+1));
+            String title ;
+            if (i<9)
+                title = "P" + (i+1) + " ";
+            else title = "p" + (i+1);
+            panels[i] = new ColumnsPanel(MyColor.onlineColumn, title);
+            panels[i].setMaximumSize(new Dimension(26000, 1000));
         }
 
     }
     private void addUnsafes(JPanel main , ColumnsPanel[] panels) {
         for (int i = 0; i < panels.length; i++) {
-            main.add(gap(30));
+            main.add(gap(30,MyColor.onlineColumnBack));
             main.add(panels[i]);
         }
     }
 
     public void update() {
-        safe.setR(10);
-        for (int i = 0; i < unsafes.length; i++) {
-//            p.setRects();
-            unsafes[i].setR(1);
-            unsafes[i].start();
+        if (data!=null) {
+            safe.setR(data.getCol(0));
+            for (int i = 0; i < unsafes.length; i++) {
+                unsafes[i].setR(data.getCol(i + 1));
+                unsafes[i].start();
+            }
+            safe.start();
+
+            // getting ready data to add to table
+            Object[] newRow = new Object[8];
+            for (int i=0; i<8; i++){
+                newRow[i] = data.getSensor(i+1);
+            }
+            sensorPanel.addData(newRow);
         }
-        safe.start();
     }
     public static void setOpen(boolean b) {
         isOpen = b;
     }
     public static boolean isOpen() {
         return isOpen;
+    }
+
+    public  void setData(DataConfig d) {
+        data = d;
+        update();
     }
 }

@@ -1,21 +1,24 @@
 package panels;
 
+import res.MyColor;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 
 public class ColumnR extends JPanel {
-    private int rects ;
-    private int height = 30;
+    private double rects ;
+    private double height = 3;
     private int weight = 70;
     private int X = 10;
-    private int Y = 400;
-    private int gap = height + 10;
+    private double Y = 400;
+    private double r = 10;
+    private int gap = 10;
     private Color fillColor ;
+    Font font = new Font(Font.MONOSPACED, Font.BOLD, 22);
 
-    private int r = 1;
-    public ColumnR(int rects, Color color) {
-        setBackground(new Color(137, 160, 236));
-        this.rects = rects;
+    public ColumnR(Color color) {
+        setBackground(MyColor.onlineColumnBack);
         fillColor = color;
     }
 
@@ -23,16 +26,21 @@ public class ColumnR extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
         g.setColor(fillColor);
-        for (int i=0; i<rects; i++) {
-            g.fillRect(X, Y, weight, height);
-            Y = Y-gap;
-            height = (height + 30) + gap;
-        }
-        Y=400;
+        Y = (100 - rects)*4;
+        height = (430 - Y);
+        Shape shape = new RoundRectangle2D.Double(X, Y, weight, height, 20, 20);
+        g2.draw(shape);
+        g2.fill(shape);
+        g.setColor(MyColor.onlineColumnNum);
+        g.setFont(font);
+        if (Double.compare(100.0, rects)==0)
+            g.drawString(" "+(int)rects+"%" , X-5, (int) (Y+(height/2) + 9));
+        else g.drawString(" "+rects+"%" , X-9, (int) (Y+(height/2) + 9));
     }
 
-    public void setRects(int rects) {
+    public void setRects(double rects) {
         this.rects = rects;
     }
 
@@ -42,15 +50,15 @@ public class ColumnR extends JPanel {
             public void run() {
                 try {
                     if (r>rects)
-                        for (int i=rects; i<=r; i++) {
-                            Thread.sleep(1000);
+                        for (double i=rects; i<=r; i++) {
+                            Thread.sleep(20);
                             setRects(i);
                             if (OnlinePanel.isOpen())
                                 repaint();
                         }
                     else
-                        for (int j=rects; j>=r; j--){
-                            Thread.sleep(1000);
+                        for (double j=rects; j>=r; j--){
+                            Thread.sleep(20);
                             setRects(j);
                             if (OnlinePanel.isOpen())
                                 repaint();
@@ -64,7 +72,9 @@ public class ColumnR extends JPanel {
         }).start();
     }
 
-    public void setR(int r) {
+    public void setR(double r) {
         this.r = r;
     }
+
+
 }

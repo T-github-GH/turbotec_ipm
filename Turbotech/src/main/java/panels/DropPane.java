@@ -1,5 +1,7 @@
 package panels;
 
+import res.MyColor;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +31,7 @@ public class DropPane extends JPanel {
         message.setFont(message.getFont().deriveFont(Font.BOLD, 54));
         add(message);
 
-        setBackground(new Color(171, 195, 203));
+        setBackground(MyColor.dropPanel);
     }
 
     @Override
