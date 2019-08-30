@@ -1,0 +1,28 @@
+{
+  "probSafe":  0,
+  "probOne":   0,
+  "probTwo":  0,
+  "probThree": 10,
+  "probFour":  0,
+  "probFive":  0,
+  "probSix": 30,
+  "probSeven":  0,
+  "probEight":  0,
+  "probNine":  0,
+  "probTen":  0,
+  "probEleven":  0,
+  "probTwelve":  0,
+  "probThirteen": 60,
+  "probFourteen": 0,
+
+  "sensorOne": 0.04,
+  "sensorTwo": 0.08,
+  "sensorThree": -0.05,
+  "sensorFour": 1.21,
+  "sensorFive": 0.75,
+  "sensorSix": 0.00,
+  "sensorSeven": 0.00,
+  "temp" = -3.07,
+
+  "updateInterval": 2000
+}

@@ -2,6 +2,7 @@ package panels;
 
 import BackWork.DataConfig;
 import res.MyColor;
+import res.MySize;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -14,46 +15,40 @@ public class OnlinePanel extends JPanel {
     DataConfig data;
     SensorPanel sensorPanel;
 
-    private static boolean isOpen = false;
+    private static boolean isOpen = true;
     public OnlinePanel() {
         setBackground(MyColor.panelBack);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-        JPanel panelOnline = new JPanel();
-        BoxLayout resultLayout = new BoxLayout(panelOnline, BoxLayout.X_AXIS);
-        panelOnline.setLayout(resultLayout);
-        Dimension panelDimension = new Dimension(1800,2600);
-        panelOnline.setSize(panelDimension);
-        safe = new ColumnsPanel(Color.GREEN, "H ");
-//        safe.setSize(new Dimension(500, 1000));
-        safe.setMinimumSize(new Dimension(800, 1000));
-        unsafes = new ColumnsPanel[14];
-        makeUnsafes(unsafes);
-        panelOnline.add(gap(30, MyColor.onlineColumnBack));
-        panelOnline.add(safe);
-        addUnsafes(panelOnline, unsafes);
-        panelOnline.add(gap(30, MyColor.onlineColumnBack));
-        panelOnline.setMaximumSize(panelDimension);
-        panelOnline.setBackground(MyColor.onlineColumnBack);
-        panelOnline.setBorder(new LineBorder(MyColor.onlineColumnBorder, 15, false));
 
         JPanel panelGif = new JPanel();
         BoxLayout layout = new BoxLayout(panelGif, BoxLayout.X_AXIS);
         panelGif.setLayout(layout);
         panelGif.add(new GifPanel());
 
-        JPanel panelData = new JPanel();
-        BoxLayout layout1 = new BoxLayout(panelData, BoxLayout.Y_AXIS);
-        panelData.setLayout(layout1);
-        panelData.add(gap(300, MyColor.panelBack));
+        JPanel panelOnline = new JPanel();
+        BoxLayout resultLayout = new BoxLayout(panelOnline, BoxLayout.X_AXIS);
+        panelOnline.setLayout(resultLayout);
+        panelOnline.setSize(MySize.ColumnPanelSize);
+        safe = new ColumnsPanel(Color.GREEN, "H ");
+//        safe.setSize(new Dimension(500, 1000));
+        safe.setMinimumSize(new Dimension(800, 1000));
+        unsafes = new ColumnsPanel[14];
+        makeUnsafes(unsafes);
+        panelOnline.add(gap(40, MyColor.onlineColumnBack));
+        panelOnline.add(safe);
+        addUnsafes(panelOnline, unsafes);
+        panelOnline.add(gap(30, MyColor.onlineColumnBack));
+        panelOnline.setMaximumSize(MySize.ColumnPanelSize);
+        panelOnline.setBackground(MyColor.onlineColumnBack);
+        panelOnline.setBorder(new LineBorder(MyColor.onlineColumnBorder, 18, false));
+
         sensorPanel = new SensorPanel();
-        panelData.add(sensorPanel);
-        panelData.add(gap(300, MyColor.panelBack));
-        panelData.setBackground(MyColor.panelBack);
 
         add(panelGif);
         add(panelOnline);
-        add(panelData);
+        add(gap(300, MyColor.panelBack));
+        add(sensorPanel);
+        add(gap(300, MyColor.panelBack));
 
 
     }
@@ -62,6 +57,7 @@ public class OnlinePanel extends JPanel {
         JPanel p = new JPanel();
         p.setBackground(color);
         p.setMaximumSize(new Dimension(size, size));
+        p.setSize(new Dimension(size, size));
         return p;
     }
     private void makeUnsafes (ColumnsPanel[] panels) {

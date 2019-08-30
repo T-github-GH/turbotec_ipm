@@ -15,7 +15,7 @@ public class ColumnR extends JPanel {
     private double r = 10;
     private int gap = 10;
     private Color fillColor ;
-    Font font = new Font(Font.MONOSPACED, Font.BOLD, 22);
+    Font font = new Font(Font.SANS_SERIF, Font.BOLD, 20);
 
     public ColumnR(Color color) {
         setBackground(MyColor.onlineColumnBack);
@@ -30,14 +30,14 @@ public class ColumnR extends JPanel {
         g.setColor(fillColor);
         Y = (100 - rects)*4;
         height = (430 - Y);
-        Shape shape = new RoundRectangle2D.Double(X, Y, weight, height, 20, 20);
+        Shape shape = new RoundRectangle2D.Double(X, Y, weight, height, 25, 25);
         g2.draw(shape);
         g2.fill(shape);
         g.setColor(MyColor.onlineColumnNum);
         g.setFont(font);
         if (Double.compare(100.0, rects)==0)
-            g.drawString(" "+(int)rects+"%" , X-5, (int) (Y+(height/2) + 9));
-        else g.drawString(" "+rects+"%" , X-9, (int) (Y+(height/2) + 9));
+            g.drawString(" "+(int)rects+"%" , X-4, (int) (Y+(height/2) + 9));
+        else g.drawString(" "+rects+"%" , X-5, (int) (Y+(height/2) + 9));
     }
 
     public void setRects(double rects) {
@@ -51,14 +51,14 @@ public class ColumnR extends JPanel {
                 try {
                     if (r>rects)
                         for (double i=rects; i<=r; i++) {
-                            Thread.sleep(20);
+                            Thread.sleep(40);
                             setRects(i);
                             if (OnlinePanel.isOpen())
                                 repaint();
                         }
                     else
                         for (double j=rects; j>=r; j--){
-                            Thread.sleep(20);
+                            Thread.sleep(40);
                             setRects(j);
                             if (OnlinePanel.isOpen())
                                 repaint();

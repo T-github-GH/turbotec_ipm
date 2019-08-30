@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
-//import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel
+//import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
 //import com.jtattoo.plaf.graphite.GraphiteLookAndFeel
 //import com.jtattoo.plaf.hifi.HiFiLookAndFeel
 //import com.jtattoo.plaf.mcwin.McWinLookAndFeel
@@ -35,14 +35,14 @@ public class Mbutton extends JButton {
         setFont(MyFont.btnFont);
 
         try {
-            UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
-        } catch (ClassNotFoundException e) {
+            UIManager.setLookAndFeel(new AluminiumLookAndFeel());
+        } /*catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
+        }*/ catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
 
@@ -50,10 +50,13 @@ public class Mbutton extends JButton {
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (number == 2) {
+                if (number == 1) {
                     OnlinePanel.setOpen(true);
-                } else {
+                    Receivepanel.setOpen(false);
+
+                } else if (number == 2){
                     OnlinePanel.setOpen(false);
+                    Receivepanel.setOpen(true);
                 }
 
                 MainPanel.cardLayout.first(MainPanel.cardPanel);

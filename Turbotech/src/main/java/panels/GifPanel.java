@@ -14,7 +14,7 @@ public class GifPanel extends JPanel {
 
         imageLabel.setIcon(image);
         add(imageLabel);
-        imageLabel.setVisible(false);
+        imageLabel.setVisible(true);
         setMaximumSize(size);
         setMinimumSize(size);
     }

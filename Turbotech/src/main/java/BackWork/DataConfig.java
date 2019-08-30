@@ -115,4 +115,35 @@ public class DataConfig {
                 ", temp=" + temp +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        DataConfig that = (DataConfig) o;
+        return Double.compare(that.probSafe, probSafe) == 0 &&
+                Double.compare(that.probOne, probOne) == 0 &&
+                Double.compare(that.probTwo, probTwo) == 0 &&
+                Double.compare(that.probThree, probThree) == 0 &&
+                Double.compare(that.probFour, probFour) == 0 &&
+                Double.compare(that.probFive, probFive) == 0 &&
+                Double.compare(that.probSix, probSix) == 0 &&
+                Double.compare(that.probSeven, probSeven) == 0 &&
+                Double.compare(that.probEight, probEight) == 0 &&
+                Double.compare(that.probNine, probNine) == 0 &&
+                Double.compare(that.probTen, probTen) == 0 &&
+                Double.compare(that.probEleven, probEleven) == 0 &&
+                Double.compare(that.probTwelve, probTwelve) == 0 &&
+                Double.compare(that.probThirteen, probThirteen) == 0 &&
+                Double.compare(that.probFourteen, probFourteen) == 0 &&
+                Double.compare(that.sensorOne, sensorOne) == 0 &&
+                Double.compare(that.sensorTwo, sensorTwo) == 0 &&
+                Double.compare(that.sensorThree, sensorThree) == 0 &&
+                Double.compare(that.sensorFour, sensorFour) == 0 &&
+                Double.compare(that.sensorFive, sensorFive) == 0 &&
+                Double.compare(that.sensorSix, sensorSix) == 0 &&
+                Double.compare(that.sensorSeven, sensorSeven) == 0 &&
+                Double.compare(that.temp, temp) == 0 &&
+                Double.compare(that.updateInterval, updateInterval) == 0;
+    }
+
 }

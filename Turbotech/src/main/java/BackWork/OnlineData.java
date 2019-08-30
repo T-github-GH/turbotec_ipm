@@ -8,8 +8,26 @@ import java.io.*;
 
 public class OnlineData {
 
-    long sleepTime = 2000;
+    private long sleepTime = 2010;
+    private DataConfig oldData = new DataConfig();
     public OnlineData(OnlinePanel oP) {
+        try {
+//            String[] args = new String[] {"/bin/bash", "-c", ("python" + System.getProperty("user.dir") + "test.py" ), "with", "args"};
+//            Process proc = new ProcessBuilder(args).start();
+//            System.out.println("python " + System.getProperty("user.dir") + "/run.py");
+//            Process proc = Runtime.getRuntime().exec("python run.py");
+            Runtime rt = Runtime.getRuntime();
+            printOutput errorReported, outputMessage;
+
+            Process proc = rt.exec("/home/vahid/anaconda3/bin/python " + System.getProperty("user.dir") + "/run.py");
+//            errorReported = new printOutput(proc.getErrorStream(), "ERROR");
+//            outputMessage = new printOutput(proc.getInputStream(), "OUTPUT");
+//            errorReported.start();
+//            outputMessage.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         final OnlinePanel onlinePanel = oP;
         new Thread(new Runnable() {
             @Override
@@ -22,11 +40,14 @@ public class OnlineData {
                         String str;
                         while ((str = reader.readLine()) != null)
                             jsonData.append(str);
-                        DataConfig d = gson.fromJson(jsonData.toString(), DataConfig.class);
-                        System.out.println(d);
-                        onlinePanel.setData(d);
+                        DataConfig newData = gson.fromJson(jsonData.toString(), DataConfig.class);
+                        if (!oldData.equals(newData)) {
+                            System.out.println(newData);
+                            onlinePanel.setData(newData);
+                            oldData = newData;
+                        }
                         reader.close();
-                        sleepTime = (long) d.getUpdateInterval();
+//                        sleepTime = (long) newData.getUpdateInterval();
                         Thread.sleep(sleepTime);
 
                     } catch (FileNotFoundException e) {
@@ -44,5 +65,25 @@ public class OnlineData {
         }).start();
     }
 
+    private class printOutput extends Thread {
+        InputStream is = null;
+
+        printOutput(InputStream is, String type) {
+            this.is = is;
+        }
+
+        public void run() {
+            String s = null;
+            try {
+                BufferedReader br = new BufferedReader(
+                        new InputStreamReader(is));
+                while ((s = br.readLine()) != null) {
+                    System.out.println(s);
+                }
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        }
+    }
 
 }

@@ -1,5 +1,7 @@
 package panels;
 
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+import res.MyColor;
 import res.MyFont;
 import res.MySize;
 
@@ -11,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class Receivepanel extends JPanel {
+    private static boolean isOpen = false;
+
     private final String BTN_DIR = "Dir";
     private final String BTN_FILE = "File";
 
@@ -20,9 +24,12 @@ public class Receivepanel extends JPanel {
 
     private File selectedFile;
     public Receivepanel() {
+        setBackground(MyColor.panelBack);
 
         JPanel ptitle = new JPanel();
+        ptitle.setBackground(MyColor.panelBack);
         JLabel title = new JLabel("Upload Files: ");
+        title.setForeground(Color.WHITE);
         title.setFont( new Font(Font.SERIF, Font.BOLD, 80) );
         ptitle.setLayout(new BorderLayout());
         ptitle.add(title, BorderLayout.WEST);
@@ -32,7 +39,7 @@ public class Receivepanel extends JPanel {
         JPanel p1 = new JPanel();
         JPanel p2 = new JPanel();
         JPanel p3 = new JPanel();
-        DropPane dropPane = new DropPane();
+        DropPanel dropPane = new DropPanel();
 
         JLabel addressTextDir = new JLabel("Directory Address: ");
         addressTextDir.setFont( MyFont.receivePanelTextLabelFont );
@@ -81,6 +88,7 @@ public class Receivepanel extends JPanel {
         btnStart.setMaximumSize(MySize.receivePanelBtnSize);
 
         JPanel footer = new JPanel();
+        footer.setBackground(MyColor.panelBack);
         footer.setLayout(new BorderLayout());
         footer.add(btnStart, BorderLayout.CENTER);
         footer.add(Box.createRigidArea(MySize.receivePanelBtnSize), BorderLayout.SOUTH);
@@ -111,5 +119,19 @@ public class Receivepanel extends JPanel {
     }
     public static void setAddressTextFile (String str){
         txtFile.setText(str);
+    }
+
+    @Override
+    public void repaint() {
+        super.repaint();
+        setVisible(isOpen());
+    }
+
+    public static void setOpen(boolean open) {
+        isOpen = open;
+    }
+
+    public static boolean isOpen() {
+        return isOpen;
     }
 }

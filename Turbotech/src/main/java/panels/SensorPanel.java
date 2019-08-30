@@ -7,31 +7,31 @@ import res.MySize;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.util.Arrays;
 
 public class SensorPanel extends JPanel {
 
-    JTable table;
+    SensorTable table;
     JScrollPane scrollPane;
 
-    Object[] currentRow = new Object[]{0,0,0,0,0,0,0,0};
+    Object[] currentRow =
+            new Object[]{0,0,0,0,0,0,0,0};
 
     public SensorPanel() {
         setBackground(MyColor.panelBack);
 
-        table = new JTable(new DefaultTableModel(new Object[]{"Sensor1", "Sensor2", "Sensor3", "Sensor4", "Sensor5", "Sensor6", "Sensor7", "Temp"} , 0));
+        table = new SensorTable(new DefaultTableModel(new Object[]{"Sensor1", "Sensor2", "Sensor3", "Sensor4", "Sensor5", "Sensor6", "Sensor7", "Temp"} , 0)){
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+                JComponent jc = (JComponent)super.prepareRenderer(renderer, row, column);
+                jc.setBorder(BorderFactory.createLineBorder(MyColor.tableGridLine, 3));
+                return jc;
+            }
+        };
+
         scrollPane = new JScrollPane(table);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        JTableHeader tableHeader = table.getTableHeader();
-        tableHeader.setFont(MyFont.sensorPanel);
-        table.setTableHeader(tableHeader);
-        table.setShowGrid(true);
-        table.setGridColor(Color.YELLOW);
-        table.setBackground(MyColor.onlineSensorRow);
-        table.setFont(MyFont.sensorPanel);
-        table.setRowHeight(80);
-
 
         setLayout(new BorderLayout());
         add(table.getTableHeader(), BorderLayout.PAGE_START);
