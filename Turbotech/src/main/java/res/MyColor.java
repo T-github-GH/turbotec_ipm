@@ -1,10 +1,10 @@
 package res;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class MyColor {
     public static Color panelBack =          new Color(6, 6, 40);
-    public static Color onlineColumnBack =   new Color(125, 200, 201, 255);
+    public static Color onlineColumnBack =   new Color(206, 198, 202);
     public static Color onlineColumnBorder = new Color(50, 50, 102);
     public static Color onlineSensorRow =    new Color(255, 255, 255);
     public static Color onlineColumn =       new Color(214, 43, 40);

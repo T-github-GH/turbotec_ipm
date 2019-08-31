@@ -12,18 +12,14 @@ public class OnlineData {
     private DataConfig oldData = new DataConfig();
     public OnlineData(OnlinePanel oP) {
         try {
-//            String[] args = new String[] {"/bin/bash", "-c", ("python" + System.getProperty("user.dir") + "test.py" ), "with", "args"};
-//            Process proc = new ProcessBuilder(args).start();
-//            System.out.println("python " + System.getProperty("user.dir") + "/run.py");
-//            Process proc = Runtime.getRuntime().exec("python run.py");
             Runtime rt = Runtime.getRuntime();
             printOutput errorReported, outputMessage;
 
             Process proc = rt.exec("/home/vahid/anaconda3/bin/python " + System.getProperty("user.dir") + "/run.py");
-//            errorReported = new printOutput(proc.getErrorStream(), "ERROR");
-//            outputMessage = new printOutput(proc.getInputStream(), "OUTPUT");
-//            errorReported.start();
-//            outputMessage.start();
+            errorReported = new printOutput(proc.getErrorStream(), "ERROR");
+            outputMessage = new printOutput(proc.getInputStream(), "OUTPUT");
+            errorReported.start();
+            outputMessage.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,7 +38,7 @@ public class OnlineData {
                             jsonData.append(str);
                         DataConfig newData = gson.fromJson(jsonData.toString(), DataConfig.class);
                         if (!oldData.equals(newData)) {
-                            System.out.println(newData);
+//                            System.out.println(newData);
                             onlinePanel.setData(newData);
                             oldData = newData;
                         }

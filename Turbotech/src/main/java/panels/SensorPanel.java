@@ -1,12 +1,10 @@
 package panels;
 
 import res.MyColor;
-import res.MyFont;
 import res.MySize;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.util.Arrays;
