@@ -51,14 +51,14 @@ public class ColumnR extends JPanel {
                 try {
                     if (r>rects)
                         for (double i=rects; i<=r; i++) {
-                            Thread.sleep(40);
+                            Thread.sleep(20);
                             setRects(i);
                             if (OnlinePanel.isOpen())
                                 repaint();
                         }
                     else
                         for (double j=rects; j>=r; j--){
-                            Thread.sleep(40);
+                            Thread.sleep(20);
                             setRects(j);
                             if (OnlinePanel.isOpen())
                                 repaint();
