@@ -1,6 +1,5 @@
 package panels;
 
-import org.python.apache.commons.compress.archivers.cpio.CpioArchiveEntry;
 import res.MyColor;
 
 import javax.swing.*;

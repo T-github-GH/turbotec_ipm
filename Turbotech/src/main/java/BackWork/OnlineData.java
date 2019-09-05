@@ -38,12 +38,12 @@ public class OnlineData {
                             jsonData.append(str);
                         DataConfig newData = gson.fromJson(jsonData.toString(), DataConfig.class);
                         if (!oldData.equals(newData)) {
-//                            System.out.println(newData);
+                            System.out.println(newData);
                             onlinePanel.setData(newData);
                             oldData = newData;
                         }
                         reader.close();
-//                        sleepTime = (long) newData.getUpdateInterval();
+                        sleepTime = (long) newData.getUpdateInterval() + 10;
                         Thread.sleep(sleepTime);
 
                     } catch (FileNotFoundException e) {

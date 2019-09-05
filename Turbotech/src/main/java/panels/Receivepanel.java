@@ -1,6 +1,5 @@
 package panels;
 
-import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
 import res.MyColor;
 import res.MyFont;
 import res.MySize;

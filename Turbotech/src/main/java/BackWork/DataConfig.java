@@ -1,32 +1,32 @@
 package BackWork;
 
 public class DataConfig {
-    public double probSafe;
-    public double probOne;
-    public double probTwo;
-    public double probThree;
-    public double probFour;
-    public double probFive;
-    public double probSix;
-    public double probSeven;
-    public double probEight;
-    public double probNine;
-    public double probTen;
-    public double probEleven;
-    public double probTwelve;
-    public double probThirteen;
-    public double probFourteen;
+    private double probSafe;
+    private double probOne;
+    private double probTwo;
+    private double probThree;
+    private double probFour;
+    private double probFive;
+    private double probSix;
+    private double probSeven;
+    private double probEight;
+    private double probNine;
+    private double probTen;
+    private double probEleven;
+    private double probTwelve;
+    private double probThirteen;
+    private double probFourteen;
 
-    public double sensorOne;
-    public double sensorTwo;
-    public double sensorThree;
-    public double sensorFour;
-    public double sensorFive;
-    public double sensorSix;
-    public double sensorSeven;
-    public double temp;
+    private double sensorOne;
+    private double sensorTwo;
+    private double sensorThree;
+    private double sensorFour;
+    private double sensorFive;
+    private double sensorSix;
+    private double sensorSeven;
+    private double temp;
 
-    public double updateInterval;
+    private double updateInterval;
 
     public double getCol(int index) {
         switch (index){

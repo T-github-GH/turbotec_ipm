@@ -4,13 +4,9 @@ import BackWork.OnlineData;
 import res.MyColor;
 import res.MySize;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-
-import static org.python.google.common.io.Resources.getResource;
 
 public class MainPanel extends JFrame {
     private static JFileChooser fileChooser ;
